@@ -54,38 +54,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tweetCell" rowHeight="120" id="M6t-HX-FQx" customClass="TweetTableViewCell" customModule="Twitter" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="120"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="tweetCell" rowHeight="119.5" id="M6t-HX-FQx" customClass="TweetTableViewCell" customModule="Twitter" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="119.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="M6t-HX-FQx" id="Gvo-Yb-SBm">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r0v-RC-RDH">
-                                            <rect key="frame" x="10" y="0.0" width="84" height="100"/>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r0v-RC-RDH">
+                                            <rect key="frame" x="10" y="0.0" width="84" height="99.5"/>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tf3-dn-Xdt">
-                                            <rect key="frame" x="102" y="0.0" width="257" height="22"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tf3-dn-Xdt">
+                                            <rect key="frame" x="102" y="0.0" width="257" height="18"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D3I-PL-kTP">
-                                            <rect key="frame" x="102" y="30" width="257" height="20.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <rect key="frame" x="102" y="19" width="257" height="80.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="r0v-RC-RDH" secondAttribute="bottom" constant="20" id="0hV-Fa-r3c"/>
+                                        <constraint firstAttribute="bottom" secondItem="D3I-PL-kTP" secondAttribute="bottom" constant="20" id="9dH-aM-dP5"/>
                                         <constraint firstItem="D3I-PL-kTP" firstAttribute="trailing" secondItem="Gvo-Yb-SBm" secondAttribute="trailingMargin" id="N5b-aN-1pd"/>
-                                        <constraint firstAttribute="bottom" secondItem="r0v-RC-RDH" secondAttribute="bottom" constant="20" id="UsO-0S-jDt"/>
+                                        <constraint firstItem="D3I-PL-kTP" firstAttribute="firstBaseline" secondItem="Tf3-dn-Xdt" secondAttribute="baseline" constant="16" symbolType="layoutAnchor" id="Tuj-mT-JXo"/>
+                                        <constraint firstItem="D3I-PL-kTP" firstAttribute="width" secondItem="Tf3-dn-Xdt" secondAttribute="width" id="Uda-h6-Qx2"/>
+                                        <constraint firstItem="D3I-PL-kTP" firstAttribute="top" secondItem="Tf3-dn-Xdt" secondAttribute="bottom" constant="1" id="Vuc-RC-oAz"/>
                                         <constraint firstItem="D3I-PL-kTP" firstAttribute="trailing" secondItem="Tf3-dn-Xdt" secondAttribute="trailing" id="Yb4-V6-K6C"/>
                                         <constraint firstItem="D3I-PL-kTP" firstAttribute="leading" secondItem="Tf3-dn-Xdt" secondAttribute="leading" id="YbN-tJ-3ej"/>
                                         <constraint firstItem="r0v-RC-RDH" firstAttribute="trailing" secondItem="Gvo-Yb-SBm" secondAttribute="trailing" multiplier="0.25" id="avQ-Dh-Npn"/>
                                         <constraint firstItem="r0v-RC-RDH" firstAttribute="top" secondItem="Gvo-Yb-SBm" secondAttribute="top" id="dU1-8u-D7u"/>
                                         <constraint firstItem="Tf3-dn-Xdt" firstAttribute="leading" secondItem="r0v-RC-RDH" secondAttribute="trailing" constant="8" id="lF5-BM-Cam"/>
-                                        <constraint firstItem="D3I-PL-kTP" firstAttribute="top" secondItem="Tf3-dn-Xdt" secondAttribute="bottom" constant="8" id="wkm-0Y-eWW"/>
                                         <constraint firstItem="r0v-RC-RDH" firstAttribute="leading" secondItem="Gvo-Yb-SBm" secondAttribute="leading" constant="10" id="xcJ-ZN-1lG"/>
                                         <constraint firstItem="r0v-RC-RDH" firstAttribute="top" secondItem="Tf3-dn-Xdt" secondAttribute="top" id="yhi-lS-Eyt"/>
                                     </constraints>
