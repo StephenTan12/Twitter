@@ -7,25 +7,25 @@
 //
 
 import UIKit
-import AlamofireImage
 
 class HomeTableViewController: UITableViewController {
     var tweetArray = [NSDictionary]()
-    var numberOfTweets: Int!
+    var numberOfTweets = 0
     
     let myRefreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadTweet()
-        
-        myRefreshControl.addTarget(self, action: #selector(loadTweet), for: .valueChanged)
+        loadTweets()
+        //load recent tweets when user scrolls up to refresh
+        myRefreshControl.addTarget(self, action: #selector(loadTweets), for: .valueChanged)
         tableView.refreshControl = myRefreshControl
     }
     
-    @objc func loadTweet() {
+    @objc func loadTweets() {
+        numberOfTweets += 20
         let myUrl = "https://api.twitter.com/1.1/statuses/home_timeline.json"
-        let myParams = ["count": 20]
+        let myParams = ["count": numberOfTweets]
             
         TwitterAPICaller.client?.getDictionariesRequest(url: myUrl, parameters: myParams, success: { (tweets: [NSDictionary]) in
             
@@ -34,6 +34,7 @@ class HomeTableViewController: UITableViewController {
                 self.tweetArray.append(tweet)
             }
             self.tableView.reloadData()
+            //stops the permanent refreshing
             self.myRefreshControl.endRefreshing()
             
         }, failure: { (Error) in
@@ -41,9 +42,13 @@ class HomeTableViewController: UITableViewController {
         })
     }
     
+    
+    
     @IBAction func onLogout(_ sender: Any) {
         TwitterAPICaller.client?.logout()
+        // sets a userdefault so user doesnt have to login everytime
         UserDefaults.standard.set(false, forKey: "userLoggedIn")
+        // goes back to the previous screen
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -74,5 +79,11 @@ class HomeTableViewController: UITableViewController {
         return cell
     }
     
+    //loading more tweets once user reaches the end of the page
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row + 1 == tweetArray.count {
+            loadTweets()
+        }
+    }
 
 }
