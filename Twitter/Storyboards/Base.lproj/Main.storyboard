@@ -38,7 +38,7 @@
                         <viewLayoutGuide key="safeArea" id="woa-h1-Gae"/>
                     </view>
                     <connections>
-                        <segue destination="7ho-YT-l9k" kind="presentation" identifier="loginToHome" id="1ya-DW-Cso"/>
+                        <segue destination="7ho-YT-l9k" kind="show" identifier="loginToHome" id="1ya-DW-Cso"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LSc-X3-asA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -85,6 +85,7 @@
         <scene sceneID="Et7-mB-bCt">
             <objects>
                 <navigationController id="7ho-YT-l9k" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="7H4-AM-Nsd"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Zp3-ab-8In">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
