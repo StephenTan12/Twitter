@@ -29,9 +29,9 @@
 		6EBCF54D21E71F9400451C03 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		872C2D82F41D5A5D2A920E9E /* Pods_Twitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2D685C92646819A9A0DC30C /* Pods-Twitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twitter.release.xcconfig"; path = "Pods/Target Support Files/Pods-Twitter/Pods-Twitter.release.xcconfig"; sourceTree = "<group>"; };
-		E45362D8254B3E3B00BDE3F3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "/Users/fullmetal1243/Desktop/CodePath IOS/Twitter/Twitter/LoginViewController.swift"; sourceTree = "<absolute>"; };
+		E45362D8254B3E3B00BDE3F3 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = "/Users/fullmetal1243/Desktop/CodePath IOS/Twitter/Twitter/ViewControllers/LoginViewController.swift"; sourceTree = "<absolute>"; };
 		E45362DD254B435900BDE3F3 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
-		E45362E0254B4C3800BDE3F3 /* TweetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TweetTableViewCell.swift; path = "/Users/fullmetal1243/Desktop/CodePath IOS/Twitter/Twitter/TweetTableViewCell.swift"; sourceTree = "<absolute>"; };
+		E45362E0254B4C3800BDE3F3 /* TweetTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TweetTableViewCell.swift; path = "/Users/fullmetal1243/Desktop/CodePath IOS/Twitter/Twitter/Cells/TweetTableViewCell.swift"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
