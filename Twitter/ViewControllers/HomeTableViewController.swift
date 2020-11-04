@@ -10,20 +10,30 @@ import UIKit
 
 class HomeTableViewController: UITableViewController {
     var tweetArray = [NSDictionary]()
-    var numberOfTweets = 0
+    var numberOfTweets = 20
     
     let myRefreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadTweets()
+        // automatic determine cell row height and give an estimatation to the row height
+        self.tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.estimatedRowHeight = 120
         //load recent tweets when user scrolls up to refresh
         myRefreshControl.addTarget(self, action: #selector(loadTweets), for: .valueChanged)
         tableView.refreshControl = myRefreshControl
     }
     
-    @objc func loadTweets() {
-        numberOfTweets += 20
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        loadTweets(refreshTweet: true)
+    }
+    
+    @objc func loadTweets(refreshTweet: Bool) {
+        if (!refreshTweet) {
+            numberOfTweets += 20
+        }
         let myUrl = "https://api.twitter.com/1.1/statuses/home_timeline.json"
         let myParams = ["count": numberOfTweets]
             
@@ -76,13 +86,16 @@ class HomeTableViewController: UITableViewController {
             cell.profileImageView.image = UIImage(data: imageData)
         }
         
+        cell.setFavorite(tweetArray[indexPath.row]["favorited"] as! Bool)
+        cell.tweetID = tweetArray[indexPath.row]["id"] as! Int
+        
         return cell
     }
     
     //loading more tweets once user reaches the end of the page
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row + 1 == tweetArray.count {
-            loadTweets()
+            loadTweets(refreshTweet: false)
         }
     }
 
