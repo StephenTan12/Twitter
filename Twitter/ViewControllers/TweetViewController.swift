@@ -16,10 +16,44 @@ class TweetViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(TweetViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(TweetViewController.keyboardWillShow), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         tweetTextView.delegate = self
         //display keyboard on segue
         tweetTextView.becomeFirstResponder()
         characterCountLabel.text = "0/280"
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        // getting the information on the size of the keyboard
+        guard let userInfo = notification.userInfo else {return}
+        
+        // getting the size of the keyboard
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+        
+        let keyboardFrame = keyboardSize.cgRectValue
+        
+        // updating the height of the screen
+        if self.view.frame.origin.y == 0 {
+            self.view.frame.origin.y -= keyboardFrame.height
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        // getting the information on the size of the keyboard
+        guard let userInfo = notification.userInfo else {return}
+               
+        // getting the size of the keyboard
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+               
+        let keyboardFrame = keyboardSize.cgRectValue
+        
+        // setting origin.y back to 0
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y += keyboardFrame.height
+        }
+        
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -51,6 +85,7 @@ class TweetViewController: UIViewController, UITextViewDelegate {
             self.dismiss(animated: true, completion: nil)
         }
     }
+    
     /*
     // MARK: - Navigation
 
@@ -60,5 +95,4 @@ class TweetViewController: UIViewController, UITextViewDelegate {
         // Pass the selected object to the new view controller.
     }
     */
-
 }
