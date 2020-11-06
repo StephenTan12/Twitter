@@ -27,13 +27,30 @@ class HomeTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        loadTweets(refreshTweet: true)
+        loadTweets()
     }
     
-    @objc func loadTweets(refreshTweet: Bool) {
-        if (!refreshTweet) {
-            numberOfTweets += 20
-        }
+    @objc func loadTweets() {
+        let myUrl = "https://api.twitter.com/1.1/statuses/home_timeline.json"
+        let myParams = ["count": numberOfTweets]
+            
+        TwitterAPICaller.client?.getDictionariesRequest(url: myUrl, parameters: myParams, success: { (tweets: [NSDictionary]) in
+            
+            self.tweetArray.removeAll()
+            for tweet in tweets {
+                self.tweetArray.append(tweet)
+            }
+            self.tableView.reloadData()
+            //stops the permanent refreshing
+            self.myRefreshControl.endRefreshing()
+            
+        }, failure: { (Error) in
+            print("Failure to get tweets")
+        })
+    }
+    
+    @objc func loadMoreTweets() {
+        numberOfTweets += 20
         let myUrl = "https://api.twitter.com/1.1/statuses/home_timeline.json"
         let myParams = ["count": numberOfTweets]
             
@@ -95,7 +112,7 @@ class HomeTableViewController: UITableViewController {
     //loading more tweets once user reaches the end of the page
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row + 1 == tweetArray.count {
-            loadTweets(refreshTweet: false)
+            loadMoreTweets()
         }
     }
 
