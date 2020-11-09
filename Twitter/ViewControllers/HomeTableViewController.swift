@@ -95,7 +95,27 @@ class HomeTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tweetCell", for: indexPath) as! TweetTableViewCell
         let user = tweetArray[indexPath.row]["user"] as! NSDictionary
         cell.userNameLabel.text = user["name"] as? String
-        cell.tweetContentLabel.text = tweetArray[indexPath.row]["text"] as? String
+        
+        let tweetContent = NSMutableAttributedString(string: tweetArray[indexPath.row]["text"] as! String)
+        
+        if let entities = tweetArray[indexPath.row]["entities"] as? NSDictionary{
+            if let mediaEntities = entities["media"] as? NSDictionary{
+                if let imageURL = mediaEntities["media_url_https"] as? String {
+                    let imageAttachment = NSTextAttachment()
+                    let image = URL(string: imageURL)
+                    
+                    let data = try? Data(contentsOf: image!)
+                    if let imageData = data {
+                        imageAttachment.image = UIImage(data: imageData)
+                
+                        let imageString = NSMutableAttributedString(attachment: imageAttachment)
+                        tweetContent.append(imageString)
+                    }
+                }
+            }
+        }
+            
+        cell.tweetContentLabel.attributedText = tweetContent
 
         let imageURL = URL(string: (user["profile_image_url_https"] as? String)!)
         let data = try? Data(contentsOf: imageURL!)
